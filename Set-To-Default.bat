@@ -31,4 +31,4 @@ net start WSearch >nul 2>&1
 net start SysMain >nul 2>&1
 net start DiagTrack >nul 2>&1
 
-echo & echo Done! & pause
+echo. & echo Done! & pause
