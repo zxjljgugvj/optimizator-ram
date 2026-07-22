@@ -1,8 +1,8 @@
 @echo off
 cd /d "%~dp0"
 
-REM Disabling services.
-echo Disabling Windows Update and notifications...
+REM Disabling Windwos Update and Notifications.
+echo Disabling Windows Update and Notifications...
 sc config wuauserv start= disabled >nul 2>&1
 sc config UsoSvc start= disabled >nul 2>&1
 sc config bits start= disabled >nul 2>&1
@@ -33,5 +33,16 @@ if exist "%~dp0RAMMap\RAMMap64.exe" (
 	"%~dp0RAMMap\RAMMap64.exe" -Et -Es -Em -Ew
 )
 timeout /t 1 /nobreak >nul
+
+REM Disable services.
+powercfg /setactive SCHEME_MIN
+net stop XblAuthManager /y >nul 2>&1
+net stop XblGameSave /y >nul 2>&1
+net stop XboxNetApiSvc /y >nul 2>&1
+net stop XboxGipSvc /y >nul 2>&1
+net stop Spooler /y >nul 2>&1
+net stop WSearch /y >nul 2>&1
+net stop SysMain /y >nul 2>&1
+net stop DiagTrack /y >nul 2>&1
 
 goto Loop
